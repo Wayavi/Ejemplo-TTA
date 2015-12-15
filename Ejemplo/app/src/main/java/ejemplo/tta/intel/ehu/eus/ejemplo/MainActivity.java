@@ -8,8 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
+
+    public final static String EXTRA_LOGIN = "eus.ehu.intel.tta.Ejemplo.login";
+    public final static String EXTRA_PASSWD = "eus.ehu.intel.tta.Ejemplo.password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +53,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void login(View view)
+    {
+        Intent intent = new Intent(this, MenuActivity.class);
+        EditText name = (EditText)findViewById(R.id.login);
+        EditText pass = (EditText)findViewById(R.id.password);
+        intent.putExtra(EXTRA_LOGIN, name.getText().toString());
+        intent.putExtra(EXTRA_PASSWD, pass.getText().toString());
+        startActivity(intent);
     }
 }
