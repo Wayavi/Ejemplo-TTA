@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Ejemplo</string>
+    <string name="action_settings">Settings</string>
+    <string name="user">Usuario</string>
+    <string name="passwd_label">Contraseña</string>
+    <string name="dni_msg">Introduce DNI</string>
+    <string name="psw_msg">Introduce password</string>
+    <string name="btn_acceder">Acceder</string>
+    <string name="menu_bienvenido">Bienvenido John Dow</string>
+    <string name="menu_leccion">Lección 1: Introducción a Android</string>
+    <string name="menu_btn_test">Nuevo Test</string>
+    <string name="menu_btn_ejercicio">Nuevo Ejercicio</string>
+    <string name="menu_btn_seguimiento">Seguimiento</string>
+    <string name="test_send">Enviar</string>
+    <string name="ejercicio_fichero">Subir fichero</string>
+    <string name="ejercicio_foto">Sacar foto</string>
+    <string name="ejercicio_audio">Grabar audio</string>
+    <string name="ejercicio_video">Grabar vídeo</string>
+</resources>
