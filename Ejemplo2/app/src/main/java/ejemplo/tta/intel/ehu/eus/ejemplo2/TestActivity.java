@@ -2,7 +2,6 @@ package ejemplo.tta.intel.ehu.eus.ejemplo2;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+import android.widget.MediaController;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -56,7 +57,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         advices[0] = "http://www.google.es";
         advices[1] = "<h1> The simpsons </h1> <p> Deberías ver más esta serie, es una frase mítica de <b> Ralph </b> </p>";
         advices[2] = null;
-        advices[3] = "";
+        advices[3] = "https://youtu.be/f55CqLc6IR0";
         advices[4] = "";
 
         correct = 2;
@@ -106,10 +107,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         String advice = advices[selected];
         if(selected == 0)
         {
-            //Es una url
-            Uri uri = Uri.parse(advice);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            Toast.makeText(this, "WebView", Toast.LENGTH_SHORT).show();
+            LinearLayout layout = (LinearLayout)findViewById(R.id.test_layout);
+            WebView web = new WebView(this);
+            layout.addView(web);
+            web.setWebViewClient(new WebViewClient());
+            web.loadUrl(advice);
         }
         else if(selected == 1)
         {
@@ -126,7 +129,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
             video.setLayoutParams(params);
-            video.setVideoURI(Uri.parse("https://youtu.be/q8ir8rVl2Z4"));
+            video.setVideoURI(Uri.parse(advices[3]));
+
+            MediaController controller = new MediaController(this);
+            controller.setAnchorView(video);
+            LinearLayout layout = (LinearLayout)findViewById(R.id.test_layout);
+            layout.addView(video);
+            video.start();
         }
     }
 

@@ -1,6 +1,7 @@
 package ejemplo.tta.intel.ehu.eus.ejemplo2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -36,6 +37,7 @@ public class MenuActivity extends AppCompatActivity {
         TextView user = (TextView)findViewById(R.id.menu_label_welcome);
         String greeting = getResources().getString(R.string.menu_greeting);
         user.setText(greeting + " " + name);
+
     }
 
     public void doTest(View view)

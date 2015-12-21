@@ -23,6 +23,11 @@
     <string name="exercise_button_photo">Sacar foto</string>
     <string name="exercise_button_audio">Grabar audio</string>
     <string name="exercise_button_video">Grabar vídeo</string>
+    <string name="exercise_toast_no_camara">Su dispositivo no dispone de cámara para realiar esta acción</string>
+    <string name="exercise_toast_no_microphone">Su dispositivo no dispone de micrófono para realiar esta acción</string>
+    <string name="exercise_toast_no_photo_service">No dispone de ninguna aplicación capaz de sacar fotos</string>
+    <string name="exercise_toast_no_micro_service">No dispone de ninguna aplicación capaz de grabar audio</string>
+    <string name="exercise_toast_error">Ha ocurrido un error</string>
 
     <string name="title_activity_followup">FollowupActivity</string>
     <string name="followup_label">Actividad de seguimiento</string>
