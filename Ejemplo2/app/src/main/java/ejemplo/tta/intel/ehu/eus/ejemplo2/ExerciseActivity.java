@@ -22,6 +22,7 @@ public class ExerciseActivity extends AppCompatActivity {
     public final static int PICTURE_REQUEST_CODE = 10;
     public final static int AUDIO_REQUEST_CODE = 20;
     public final static int VIDEO_REQUEST_CODE = 30;
+    public final static int READ_REQUEST_CODE = 40;
     public Uri pictureUri;
 
     @Override
@@ -47,7 +48,10 @@ public class ExerciseActivity extends AppCompatActivity {
 
     public void file(View view)
     {
-        Toast.makeText(this, "File pulsado", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
     public void photo(View view)
@@ -131,9 +135,12 @@ public class ExerciseActivity extends AppCompatActivity {
         }
         switch( requestCode )
         {
-            case PICTURE_REQUEST_CODE:
+            case READ_REQUEST_CODE:
             case AUDIO_REQUEST_CODE:
             case VIDEO_REQUEST_CODE:
+                sendFile(data.getData());
+                break;
+            case PICTURE_REQUEST_CODE:
                 sendFile(pictureUri);
                 break;
         }

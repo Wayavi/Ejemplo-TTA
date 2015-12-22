@@ -55,7 +55,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         advices = new String[5];
         advices[0] = "http://www.google.es";
-        advices[1] = "<h1> The simpsons </h1> <p> Deberías ver más esta serie, es una frase mítica de <b> Ralph </b> </p>";
+        advices[1] = "<h1> The simpsons </h1> <p> Deberias ver máa esta serie, es una frase mitica de <b> Ralph </b> </p>";
         advices[2] = null;
         advices[3] = "https://youtu.be/f55CqLc6IR0";
         advices[4] = "";
@@ -77,6 +77,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     public void send(View view)
     {
         RadioGroup grupo = (RadioGroup)findViewById(R.id.test_group);
+        int radios = grupo.getChildCount();
+        for(int i = 0; i < radios; i++ )
+        {
+            grupo.getChildAt(i).setEnabled(false);
+        }
         int radioId = grupo.getCheckedRadioButtonId();
         View radioButton = grupo.findViewById(radioId);
         selected = grupo.indexOfChild(radioButton);
@@ -107,7 +112,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         String advice = advices[selected];
         if(selected == 0)
         {
-            Toast.makeText(this, "WebView", Toast.LENGTH_SHORT).show();
             LinearLayout layout = (LinearLayout)findViewById(R.id.test_layout);
             WebView web = new WebView(this);
             layout.addView(web);
