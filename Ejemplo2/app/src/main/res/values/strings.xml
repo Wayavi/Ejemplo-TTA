@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Ejemplo2</string>
     <string name="action_settings">Settings</string>
+
     <string name="main_user">Usuario</string>
     <string name="main_pass">Contraseña</string>
     <string name="main_hint_user">Introduce DNI</string>
     <string name="main_hint_pass">Introduce password</string>
     <string name="main_button_login">Acceder</string>
+    <string name="main_toast_no_network">No se encuentra conctado a nunguna red. Conectese a una red y vuelva a abrir la aplicación</string>
+    <string name="main_toast_no_wifi">No se encuentra conectado a una red Wifi, se consumirán datos de su tarifa móvil</string>
 
     <string name="title_activity_menu">MenuActivity</string>
     <string name="menu_greeting">Bienvenido</string>
@@ -31,4 +34,6 @@
 
     <string name="title_activity_followup">FollowupActivity</string>
     <string name="followup_label">Actividad de seguimiento</string>
+
+    <string name="network_disconnected">Se ha desconectado de la red</string>
 </resources>

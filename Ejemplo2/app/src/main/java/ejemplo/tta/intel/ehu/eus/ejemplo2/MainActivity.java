@@ -1,7 +1,11 @@
 package ejemplo.tta.intel.ehu.eus.ejemplo2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,9 +19,13 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Constantes de la clase
     public final static String EXTRA_LOGIN = "eus.ehu.intel.tta.Ejemplo2.user";
     public final static String EXTRA_PASS = "eus.ehu.intel.tta.Ejemplo2.pass";
     public static final String PREF_LOGIN = "eus.ehu.intel.tta.Ejemplo2.login";
+
+    //Atributos globales
+    private NetworkReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,28 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Check for network state
+        ConnectivityManager manager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+        if(!info.isConnected())
+        {
+            Toast.makeText(this, R.string.main_toast_no_network, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        else
+        {
+            if(info.getType() != ConnectivityManager.TYPE_WIFI)
+            {
+                Toast.makeText(this, R.string.main_toast_no_wifi, Toast.LENGTH_SHORT).show();
+            }
+
+            //Registramos el BroadcastReceiver
+            IntentFilter filtro = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+            receiver = new NetworkReceiver();
+            this.registerReceiver(receiver, filtro);
+
+        }
 
         SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
         String userShared = preferencias.getString(PREF_LOGIN, null);
@@ -64,6 +94,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+
+        //Desuscribimos el BroadcastReceiver
+        if(receiver != null)
+        {
+            this.unregisterReceiver(receiver);
+        }
     }
 
     public void login(View view)
