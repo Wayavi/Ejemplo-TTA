@@ -34,7 +34,6 @@
             android:text="@string/ejercicio_foto"
             android:id="@+id/button_take_photo"
             android:onClick="sendPhoto"/>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
