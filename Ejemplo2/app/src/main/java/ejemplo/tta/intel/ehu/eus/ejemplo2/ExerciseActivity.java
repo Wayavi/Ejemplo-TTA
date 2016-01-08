@@ -15,15 +15,23 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+
+import ejemplo.tta.intel.ehu.eus.ejemplo2.otros.RestClient;
 
 public class ExerciseActivity extends AppCompatActivity {
 
-    public final static int PICTURE_REQUEST_CODE = 10;
-    public final static int AUDIO_REQUEST_CODE = 20;
-    public final static int VIDEO_REQUEST_CODE = 30;
-    public final static int READ_REQUEST_CODE = 40;
-    public Uri pictureUri;
+    private final static int PICTURE_REQUEST_CODE = 10;
+    private final static int AUDIO_REQUEST_CODE = 20;
+    private final static int VIDEO_REQUEST_CODE = 30;
+    private final static int READ_REQUEST_CODE = 40;
+    private Uri pictureUri;
+    private RestClient rest;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +50,30 @@ public class ExerciseActivity extends AppCompatActivity {
         });
 
         //Custom code
-        TextView pregunta = (TextView)findViewById(R.id.exercise_question);
-        pregunta.setText("Pulsa uno de estos botones al azar para ver un magnífico Toast");
+        final TextView pregunta = (TextView)findViewById(R.id.exercise_question);
+        String auth = getIntent().getStringExtra(MenuActivity.EXTRA_AUTH);
+        userId = getIntent().getIntExtra(MenuActivity.EXTRA_ID, 0);
+        rest = new RestClient("http://u017633.ehu.eus:18080/AlumnoTta/rest/tta");
+        rest.setAuthorization(auth);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject exercise = rest.getJson("getExercise?id=1");
+                    final String wording = exercise.getString("wording");
+                    pregunta.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            pregunta.setText(wording);
+                        }
+                    });
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void file(View view)
@@ -149,6 +179,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private void sendFile(Uri uri)
     {
         Toast.makeText(this, uri.toString(), Toast.LENGTH_SHORT).show();
+        //rest.postFile("postExercise?user=" + userId + "&id=");
     }
 
 

@@ -41,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/main_pass"
-            android:hint="@string/main_hint_pass"/>
+            android:hint="@string/main_hint_pass"
+            android:password="true"/>
 
     </GridLayout>
 

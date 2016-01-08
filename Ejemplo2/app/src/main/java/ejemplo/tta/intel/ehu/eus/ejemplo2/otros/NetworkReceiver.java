@@ -1,4 +1,4 @@
-package ejemplo.tta.intel.ehu.eus.ejemplo2;
+package ejemplo.tta.intel.ehu.eus.ejemplo2.otros;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
+
+import ejemplo.tta.intel.ehu.eus.ejemplo2.R;
 
 public class NetworkReceiver extends BroadcastReceiver
 {

@@ -12,7 +12,7 @@
 
     <string name="title_activity_menu">MenuActivity</string>
     <string name="menu_greeting">Bienvenido</string>
-    <string name="menu_leccion">Lección 1: Introducción a Android</string>
+    <string name="menu_leccion">Lección</string>
     <string name="menu_button_test">Nuevo test</string>
     <string name="menu_button_ejercicio">Nuevo ejercicio</string>
     <string name="menu_button_seguimiento">Seguimiento</string>

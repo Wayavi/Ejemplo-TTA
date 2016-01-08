@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import ejemplo.tta.intel.ehu.eus.ejemplo2.otros.NetworkReceiver;
+
 public class MainActivity extends AppCompatActivity {
 
     //Constantes de la clase
@@ -100,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy()
     {
         super.onDestroy();
-
         //Desuscribimos el BroadcastReceiver
         if(receiver != null)
         {
